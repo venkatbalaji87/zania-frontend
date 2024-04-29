@@ -4,15 +4,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-Components
+## Components
 Grid Component
 Image Viewer Component
 Spinner Component
 
-data
+## data
 data.json
 
-apiservice
+## apiservice
 apiservice for MSW
 
 Document Grid component to render with drag and drop
