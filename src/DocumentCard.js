@@ -73,7 +73,7 @@ function DocumentCard() {
     }, 5000);
 
     return () => clearInterval(saveInterval);
-  }, [data, saving]);
+  }, [data, saving, saveDataToStorage]);
 
   return (
       <div>
