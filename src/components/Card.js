@@ -1,11 +1,10 @@
 import React from 'react';
 
-const Card = ({ title, thumbnail, onClick }) => {
+const Card = ({ title, thumbnailSrc, onClick }) => {
   return (
     <div className="card" onClick={onClick}>
       <p>{title}</p>
-      <img src={thumbnail} alt={title} />
-     
+      <img src={thumbnailSrc} alt={title} height="200px" width="200px" />
     </div>
   );
 };

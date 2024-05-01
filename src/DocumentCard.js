@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import Grid from './components/Grid';
 import ImageViewer from './components/ImageViewer';
 import Spinner from './components/Spinner';
 import { fetchData, saveData } from './services/api';
+
 
 function DocumentCard() {
   const [data, setData] = useState([]);
@@ -37,10 +38,10 @@ function DocumentCard() {
 
   // Function to handle card click and display overlay image
   const handleCardClick = (imageSrc) => {
-    console.log("handleCardClick", imageSrc)
-    setOverlayImage(imageSrc);
-  };
+      setOverlayImage(imageSrc);
+    };
 
+ 
   // Function to handle overlay close
   const handleCloseOverlay = () => {
     setOverlayImage(null);
@@ -73,38 +74,14 @@ function DocumentCard() {
     }, 5000);
 
     return () => clearInterval(saveInterval);
-  }, [data, saving, saveDataToStorage]);
+  }, [data, saving]);
 
   return (
       <div>
-      <DragDropContext onDragEnd={handleDragEnd}>
-        <Droppable droppableId="cards">
-          {(provided) => (
-            <div ref={provided.innerRef} {...provided.droppableProps} className="document-cards-container">
-              {data.map((item, index) => (
-                <Draggable key={item.type} draggableId={item.type} index={index}>
-                  {(provided) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
-                      <div className="card" onClick={() => handleCardClick(item.thumbnail)}>
-                        <img src={item.thumbnail} alt={item.title} height="200px" width="200px" />
-                        <p>{item.title}</p>
-                      </div>
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
-      {overlayImage && <ImageViewer imageSrc={overlayImage} onClose={handleCloseOverlay} />}
       {saving && <Spinner />}
-      {lastSaveTime && <p><strong>Last saved: {lastSaveTime} </strong></p>}
+      <Grid data={data} onCardClick = {handleCardClick} onDragEnd = {handleDragEnd} />
+      {lastSaveTime && <p className='align-center'><strong>Last saved: {lastSaveTime} </strong></p>}
+      {overlayImage && <ImageViewer imageSrc={overlayImage} onClose={handleCloseOverlay} />}
     </div>
   );
 }
