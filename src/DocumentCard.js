@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './App.css'
 import Grid from './components/Grid';
 import ImageViewer from './components/ImageViewer';
 import Spinner from './components/Spinner';
@@ -9,7 +10,7 @@ function DocumentCard() {
   const [data, setData] = useState([]);
   const [overlayImage, setOverlayImage] = useState(null);
   const [saving, setSaving] = useState(false);
-  const [lastSaveTime, setLastSaveTime] = useState(null);
+  const [lastSaveTime, setLastSaveTime] = useState(new Date().toLocaleTimeString());
 
   // Fetch data from localStorage on component mount
   useEffect(() => {
@@ -77,7 +78,7 @@ function DocumentCard() {
   }, [data, saving]);
 
   return (
-      <div>
+      <div className='display-flex'>
       {saving && <Spinner />}
       <Grid data={data} onCardClick = {handleCardClick} onDragEnd = {handleDragEnd} />
       {lastSaveTime && <p className='align-center'><strong>Last saved: {lastSaveTime} </strong></p>}

@@ -2,7 +2,8 @@
 .document-cards-container {
   display: grid;
   grid-template-columns: auto auto auto;
-  justify-content: center;
+  justify-content: end;
+  width: 80%;
 }
 
 .card {
@@ -57,4 +58,8 @@
   color: #fff;
   font-size: 24px;
   cursor: pointer;
+}
+
+.display-flex {
+  display: flex;
 }
